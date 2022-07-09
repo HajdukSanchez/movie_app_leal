@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -59,6 +58,7 @@ class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
     }
   }
 
+  /// Method to simplify the data request for list methods
   Future<List<TvShow>> _getListOfTvShows(String urlPath) async {
     final uri = urlPathConverter.convertDataToUriPath(urlPath);
     final response = await client.get(uri, headers: {"Content-Type": "application/json"});
