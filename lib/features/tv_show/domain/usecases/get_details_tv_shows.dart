@@ -20,7 +20,7 @@ class GetDetailsTvShow extends UseCase<TvShow, Params> {
 
 /// Class with parameters to get the details of a specific TV Show.
 class Params extends Equatable {
-  final int id;
+  final String id;
 
   const Params({required this.id});
 

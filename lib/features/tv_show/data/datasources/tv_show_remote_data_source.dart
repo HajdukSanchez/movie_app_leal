@@ -16,11 +16,16 @@ abstract class TvShowRemoteDataSource {
   Future<List<TvShow>> getRecommendedTvShows();
 
   /// Get details from a TV Show from remote server
-  Future<TvShow> getDetailsTvShow(int id);
+  Future<TvShow> getDetailsTvShow(String id);
 
   /// Get today airing TV Shows from remote server
   Future<List<TvShow>> getAiringTodayTvShows();
 }
+
+const airingPath = "airing_today";
+const popularPath = "popular";
+const recommendedPath = "top_rated";
+const detailsPath = "1";
 
 class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
   final http.Client client;
@@ -30,7 +35,32 @@ class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
 
   @override
   Future<List<TvShow>> getAiringTodayTvShows() async {
-    final uri = urlPathConverter.convertDataToUriPath("airing_today");
+    return await _getListOfTvShows(airingPath);
+  }
+
+  @override
+  Future<List<TvShow>> getPopularTvShows() async {
+    return await _getListOfTvShows(popularPath);
+  }
+
+  @override
+  Future<List<TvShow>> getRecommendedTvShows() async {
+    return await _getListOfTvShows(recommendedPath);
+  }
+
+  @override
+  Future<TvShow> getDetailsTvShow(String id) async {
+    final uri = urlPathConverter.convertDataToUriPath(id);
+    final response = await client.get(uri, headers: {"Content-Type": "application/json"});
+    if (response.statusCode == 200) {
+      return TvShowModel.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<TvShow>> _getListOfTvShows(String urlPath) async {
+    final uri = urlPathConverter.convertDataToUriPath(urlPath);
     final response = await client.get(uri, headers: {"Content-Type": "application/json"});
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
@@ -41,20 +71,5 @@ class TvShowRemoteDataSourceImpl implements TvShowRemoteDataSource {
     } else {
       throw ServerException();
     }
-  }
-
-  @override
-  Future<List<TvShow>> getPopularTvShows() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<TvShow>> getRecommendedTvShows() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<TvShow> getDetailsTvShow(int id) {
-    throw UnimplementedError();
   }
 }

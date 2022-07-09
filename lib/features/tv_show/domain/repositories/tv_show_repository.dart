@@ -21,7 +21,7 @@ abstract class TvShowRepository {
   ///
   /// Gets details of a Tv shows based on the [id].
   /// If there are no results, an failure is returned.
-  Future<Either<Failure, TvShow>> getDetailsTvShow(int id);
+  Future<Either<Failure, TvShow>> getDetailsTvShow(String id);
 
   /// Search for todays airing TV Shows.
   ///

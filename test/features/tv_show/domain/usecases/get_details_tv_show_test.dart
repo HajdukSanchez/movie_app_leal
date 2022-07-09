@@ -12,7 +12,7 @@ void main() {
   late GetDetailsTvShow usecase;
   late MockTvShowRepository mockTvShowRepository;
 
-  const testId = 1; // Test ID to ejemplify ID of a TV Show.
+  const String testId = "1"; // Test ID to ejemplify ID of a TV Show.
 
   setUp(() {
     mockTvShowRepository = MockTvShowRepository();
@@ -22,11 +22,11 @@ void main() {
   test('should get details for a TV show by ID from the repository', () async {
     // arrange
     when(() => mockTvShowRepository.getDetailsTvShow(testId))
-        .thenAnswer((_) async => Right(testTvShow));
+        .thenAnswer((_) async => const Right(testTvShow));
     // act
     final result = await usecase(const Params(id: testId));
     // assert
-    expect(result, Right(testTvShow));
+    expect(result, const Right(testTvShow));
     verify(() => mockTvShowRepository.getDetailsTvShow(testId));
     verifyNoMoreInteractions(mockTvShowRepository); // No more interactions with repository
   });
