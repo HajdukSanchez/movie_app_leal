@@ -1,6 +1,8 @@
+import 'package:movies_app_leal/features/auth/domain/entities/auth.dart';
 import 'package:movies_app_leal/features/tv_show/data/models/tv_show_model.dart';
 import 'package:movies_app_leal/features/tv_show/domain/entities/tv_show.dart';
 
+//! Feature: TV Show
 /// Test variable to ejemplify a new tv show
 const testTvShowModel = TvShowModel(
   id: 1,
@@ -25,3 +27,7 @@ const String testPath = "airing_today";
 /// Full URL to ejemplify data API url
 const String testFullUrl =
     "https://api.themoviedb.org/3/tv/airing_today?api_key=56da94afef2f8be1549d9cbe18339632&language=en-US&page=1";
+
+//! Feature: TV Show
+/// Auth user to login
+const testAuthUser = Auth(name: "test", password: "test");
