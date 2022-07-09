@@ -9,7 +9,7 @@ class TvShow extends Equatable {
   final num voteAverage;
 
   /// First air date of the TV Show.
-  final DateTime firstAirDate;
+  final String firstAirDate;
 
   /// Name of the TV Show.
   final String name;
