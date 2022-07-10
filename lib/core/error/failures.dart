@@ -10,3 +10,9 @@ class ServerFailure extends Failure {
   @override
   List<Object> get props => [];
 }
+
+/// Failure to handle cache error.
+class CacheFailure extends Failure {
+  @override
+  List<Object> get props => [];
+}
