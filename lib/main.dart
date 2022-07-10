@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Gilroy',
             ),
       ),
-      initialRoute: RoutesPages.welcome.name,
+      initialRoute: RoutesPages.home.name, // TODO: Chnage initial route name
     );
   }
 }

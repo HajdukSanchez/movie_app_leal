@@ -13,7 +13,11 @@ class MoviesTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: centered
+          ? const EdgeInsets.all(10)
+          : const EdgeInsets.symmetric(
+              vertical: 10,
+            ),
       alignment: centered ? Alignment.center : Alignment.centerLeft,
       child: Text(text,
           style: TextStyle(
