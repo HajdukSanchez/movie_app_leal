@@ -70,7 +70,7 @@ void main() {
       expect(result, equals(testPopularTvShows));
     });
 
-    test('should return a list of tv shows when response code is different from 200', () async {
+    test('should return a ServerException when response code is different from 200', () async {
       // arrange
       _mockSetUpHttpClient400();
       // act
@@ -108,7 +108,7 @@ void main() {
       expect(result, equals(testPopularTvShows));
     });
 
-    test('should return a list of tv shows when response code is different from 200', () async {
+    test('should return a ServerException when response code is different from 200', () async {
       // arrange
       _mockSetUpHttpClient400();
       // act
@@ -146,7 +146,7 @@ void main() {
       expect(result, equals(testPopularTvShows));
     });
 
-    test('should return a list of tv shows when response code is different from 200', () async {
+    test('should return a ServerException when response code is different from 200', () async {
       // arrange
       _mockSetUpHttpClient400();
       // act
@@ -186,7 +186,7 @@ void main() {
       expect(result, equals(testTvShow));
     });
 
-    test('should return a list of tv shows when response code is different from 200', () async {
+    test('should return a ServerException when response code is different from 200', () async {
       // arrange
       _mockSetUpHttpClient400();
       // act

@@ -17,13 +17,13 @@ void main() {
     usecase = LogOut(mockAuthRepository);
   });
 
-  test('should get a False value when logout is successfull', () async {
+  test('should get True value when logout is successfull', () async {
     // arrange
-    when(() => mockAuthRepository.logOut()).thenAnswer((_) async => const Right(false));
+    when(() => mockAuthRepository.logOut()).thenAnswer((_) async => const Right(true));
     // act
     final result = await usecase(NoParams());
     // assert
-    expect(result, const Right(false));
+    expect(result, const Right(true));
     verify(() => mockAuthRepository.logOut());
     verifyNoMoreInteractions(mockAuthRepository); // No more interactions with repository
   });

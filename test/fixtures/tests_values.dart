@@ -1,3 +1,4 @@
+import 'package:movies_app_leal/features/auth/data/models/auth_model.dart';
 import 'package:movies_app_leal/features/auth/domain/entities/auth.dart';
 import 'package:movies_app_leal/features/tv_show/data/models/tv_show_model.dart';
 import 'package:movies_app_leal/features/tv_show/domain/entities/tv_show.dart';
@@ -29,5 +30,8 @@ const String testFullUrl =
     "https://api.themoviedb.org/3/tv/airing_today?api_key=56da94afef2f8be1549d9cbe18339632&language=en-US&page=1";
 
 //! Feature: TV Show
+/// Auth user model
+const testAuthUserModel = AuthModel(name: "test", password: "test");
+
 /// Auth user to login
-const testAuthUser = Auth(name: "test", password: "test");
+const Auth testAuthUser = testAuthUserModel;
