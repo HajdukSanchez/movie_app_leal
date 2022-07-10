@@ -9,10 +9,11 @@ class BackgroundContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("asset/images/bg-witcher.jpeg"),
+            image: const AssetImage("asset/images/bg-witcher.jpeg"),
             fit: BoxFit.none,
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken),
           ),
         ),
         child: child,

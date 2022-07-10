@@ -15,7 +15,12 @@ class MoviesTitle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       alignment: centered ? Alignment.center : Alignment.centerLeft,
-      child: Text(text, style: TextStyle(color: white, fontSize: fontSize)),
+      child: Text(text,
+          style: TextStyle(
+            color: white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+          )),
     );
   }
 }
