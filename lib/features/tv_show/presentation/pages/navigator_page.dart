@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
+import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
+import 'package:movies_app_leal/features/tv_show/presentation/pages/favorites_page.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/home_page.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -16,9 +18,29 @@ class _NavigatorPageState extends State<NavigatorPage> {
   /// List of items to render and navigate
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
+    FavoritesPage(),
     HomePage(),
     HomePage(),
-    HomePage(),
+  ];
+
+  /// List of options depends on the selected index
+  static const List<Map<String, dynamic>> _widgetPageOptions = <Map<String, dynamic>>[
+    {
+      'title': 'Home',
+      'icon': Icons.home,
+    },
+    {
+      'title': 'Favorites',
+      'icon': Icons.favorite,
+    },
+    {
+      'title': 'Recent',
+      'icon': Icons.search,
+    },
+    {
+      'title': 'Search',
+      'icon': Icons.settings,
+    },
   ];
 
   void _onItemTapped(int index) {
@@ -27,9 +49,28 @@ class _NavigatorPageState extends State<NavigatorPage> {
     });
   }
 
+  void _onSettings() {
+    // TODO: Add logout
+  }
+
   @override
   Widget build(BuildContext context) {
+    final title = _widgetPageOptions.elementAt(_selectedIndex)['title'];
+
     return Scaffold(
+      backgroundColor: black,
+      appBar: AppBar(
+        backgroundColor: black,
+        elevation: 0,
+        title: Text(title),
+        actions: [
+          MoviesActionButton(
+            icon: Icons.settings_rounded,
+            function: _onSettings,
+            iconColor: grey,
+          ),
+        ],
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

@@ -21,7 +21,7 @@ class MovieList extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       decoration: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 1.5, color: grey),
+          bottom: BorderSide(width: 1, color: grey),
         ),
       ),
       child: Column(
@@ -33,7 +33,7 @@ class MovieList extends StatelessWidget {
           _ListOfMovies(
             fullPoster: fullPoster,
           ),
-          const _SeeAllButton(),
+          if (!fullPoster) const _SeeAllButton(),
         ],
       ),
     );

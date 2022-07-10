@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/util/set_starts.dart';
+import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_image.dart';
 
@@ -60,6 +61,8 @@ class _BigPoster extends StatelessWidget {
   Widget build(BuildContext context) {
     void _onWatchNow() {}
 
+    void _onFavorite() {}
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 150,
@@ -103,6 +106,11 @@ class _BigPoster extends StatelessWidget {
                       onPressed: _onWatchNow,
                       width: 120,
                       hasMargin: false,
+                    ),
+                    MoviesActionButton(
+                      icon: Icons.favorite_outline_rounded,
+                      function: _onFavorite,
+                      iconColor: grey,
                     )
                   ],
                 )
