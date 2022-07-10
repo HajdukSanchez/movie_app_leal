@@ -7,8 +7,8 @@ import 'package:movies_app_leal/injection_dependecy_container.dart' as di;
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarIconBrightness: Brightness.dark)); // status bar color
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light)); // status bar color
 
   WidgetsFlutterBinding
       .ensureInitialized(); // It is important to add this, to ensure not to have problems with Futures initialized the injection container
@@ -25,9 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       routes: routes,
-      initialRoute: RoutesPages.login.name,
+      theme: ThemeData.dark(),
+      initialRoute: RoutesPages.welcome.name,
     );
   }
 }
-
-// const theme = ThemeData.dark().copyWith();
