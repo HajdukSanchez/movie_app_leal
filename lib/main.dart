@@ -25,7 +25,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       routes: routes,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: 'Gilroy',
+            ),
+      ),
       initialRoute: RoutesPages.welcome.name,
     );
   }
