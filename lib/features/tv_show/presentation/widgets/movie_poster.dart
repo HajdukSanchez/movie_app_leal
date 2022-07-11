@@ -201,10 +201,11 @@ class _BigPoster extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
                   tvShow.name,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.visible,
                   ),
                 ),
               ),

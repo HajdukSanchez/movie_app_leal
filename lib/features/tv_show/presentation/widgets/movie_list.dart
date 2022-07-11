@@ -67,7 +67,7 @@ class _ListOfMovies extends StatelessWidget {
         posterHeight = 150;
         break;
       case MoviePosterSize.big:
-        posterHeight = 400;
+        posterHeight = 480;
         break;
       default:
         posterHeight = 260;
