@@ -15,9 +15,11 @@ class FavoritesPage extends StatelessWidget {
         child: ListView.separated(
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return const MoviePoster(
-              posterType: MoviePosterSize.normal,
-            );
+            return Container();
+            // return MoviePoster(
+            //   posterType: MoviePosterSize.normal,
+            //   tvShow: ,
+            // );
           },
           separatorBuilder: (BuildContext context, int index) => const _Separator(),
         ),

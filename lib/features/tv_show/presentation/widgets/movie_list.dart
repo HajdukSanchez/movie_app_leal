@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/widgets/movies_title.dart';
+import 'package:movies_app_leal/features/tv_show/domain/entities/tv_show.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
 
 class MovieList extends StatelessWidget {
   final String listTitle;
   final MoviePosterSize posterType;
+  final List<TvShow> tvShows;
 
   const MovieList({
     Key? key,
     required this.listTitle,
+    required this.tvShows,
     this.posterType = MoviePosterSize.small,
   }) : super(key: key);
 
@@ -33,6 +36,7 @@ class MovieList extends StatelessWidget {
           ),
           _ListOfMovies(
             posterType: posterType,
+            list: tvShows,
           ),
           if (posterType == MoviePosterSize.small) const _SeeAllButton(),
         ],
@@ -43,15 +47,16 @@ class MovieList extends StatelessWidget {
 
 class _ListOfMovies extends StatelessWidget {
   final MoviePosterSize posterType;
+  final List<TvShow> list;
 
   const _ListOfMovies({
     Key? key,
     required this.posterType,
+    required this.list,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final items = List<String>.generate(10000, (i) => 'Item $i');
     final double posterHeight;
 
     switch (posterType) {
@@ -73,10 +78,11 @@ class _ListOfMovies extends StatelessWidget {
       height: posterHeight,
       child: ListView.separated(
         scrollDirection: Axis.horizontal, // Direction horizontal of the list
-        itemCount: items.length,
+        itemCount: list.length,
         separatorBuilder: (_, __) => const SizedBox(width: 20),
         itemBuilder: (BuildContext context, int index) => MoviePoster(
           posterType: posterType,
+          tvShow: list[index],
         ),
       ),
     );

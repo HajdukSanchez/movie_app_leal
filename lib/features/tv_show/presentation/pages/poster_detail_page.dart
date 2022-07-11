@@ -32,9 +32,10 @@ class PosterDetailPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.8,
             ),
             itemBuilder: (ctx, index, realIdx) {
-              return const MoviePoster(
-                posterType: MoviePosterSize.big,
-              );
+              return Container();
+              // return const MoviePoster(
+              //   posterType: MoviePosterSize.big,
+              // );
             },
           ),
         ),

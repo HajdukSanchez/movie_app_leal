@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
-import 'package:movies_app_leal/core/util/set_starts.dart';
+import 'package:movies_app_leal/core/util/modify_text_length.dart';
+import 'package:movies_app_leal/core/util/set_stars.dart';
 import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_image.dart';
+import 'package:movies_app_leal/features/tv_show/domain/entities/tv_show.dart';
 
 /// Enum with Movie Poster sizes.
 enum MoviePosterSize {
@@ -15,33 +17,49 @@ enum MoviePosterSize {
 
 class MoviePoster extends StatelessWidget {
   final MoviePosterSize posterType;
+  final TvShow tvShow;
 
-  const MoviePoster({Key? key, this.posterType = MoviePosterSize.small}) : super(key: key);
+  const MoviePoster({
+    Key? key,
+    required this.tvShow,
+    this.posterType = MoviePosterSize.small,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void _onWatchNow() {}
+    void _onWatchNow() {
+      // TODO: implement _onWatchNow
+    }
 
     switch (posterType) {
       case MoviePosterSize.small:
-        return const _SmallPoster();
+        return _SmallPoster(
+          tvShow: tvShow,
+        );
       case MoviePosterSize.normal:
         return _NormalPoster(
           onWatchNow: _onWatchNow,
+          tvShow: tvShow,
         );
       case MoviePosterSize.big:
         return _BigPoster(
           onWatchNow: _onWatchNow,
+          tvShow: tvShow,
         );
       default:
-        return const _SmallPoster();
+        return _SmallPoster(
+          tvShow: tvShow,
+        );
     }
   }
 }
 
 class _SmallPoster extends StatelessWidget {
+  final TvShow tvShow;
+
   const _SmallPoster({
     Key? key,
+    required this.tvShow,
   }) : super(key: key);
 
   @override
@@ -51,22 +69,24 @@ class _SmallPoster extends StatelessWidget {
       height: 300,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           MoviesImage(
             width: 150,
             height: 200,
+            imagePath: tvShow.posterPath,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
-            "Text image",
-            style: TextStyle(
+            tvShow.name,
+            style: const TextStyle(
               fontSize: 16,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           _PosterStars(
-            raiting: 10,
+            rating: double.parse(tvShow.voteAverage.toString()),
           )
         ],
       ),
@@ -76,10 +96,12 @@ class _SmallPoster extends StatelessWidget {
 
 class _NormalPoster extends StatelessWidget {
   final void Function() onWatchNow;
+  final TvShow tvShow;
 
   const _NormalPoster({
     Key? key,
     required this.onWatchNow,
+    required this.tvShow,
   }) : super(key: key);
 
   @override
@@ -92,9 +114,10 @@ class _NormalPoster extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MoviesImage(
+          MoviesImage(
             width: 130,
             height: 150,
+            imagePath: tvShow.posterPath,
           ),
           const SizedBox(
             width: 5,
@@ -105,23 +128,23 @@ class _NormalPoster extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Text image",
-                  style: TextStyle(
+                Text(
+                  subStringTextLength(25, tvShow.name),
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    "IMDb: 9,4",
-                    style: TextStyle(
+                    "IMDb: ${tvShow.voteAverage}",
+                    style: const TextStyle(
                       fontSize: 12,
                       color: grey,
                     ),
                   ),
                 ),
-                const _PosterStars(raiting: 10),
+                _PosterStars(rating: double.parse(tvShow.voteAverage.toString())),
                 Row(
                   children: [
                     MoviesButton(
@@ -148,10 +171,12 @@ class _NormalPoster extends StatelessWidget {
 
 class _BigPoster extends StatelessWidget {
   final void Function() onWatchNow;
+  final TvShow tvShow;
 
   const _BigPoster({
     Key? key,
     required this.onWatchNow,
+    required this.tvShow,
   }) : super(key: key);
 
   @override
@@ -160,9 +185,10 @@ class _BigPoster extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MoviesImage(
+          MoviesImage(
             width: 300,
             height: 350,
+            imagePath: tvShow.posterPath,
           ),
           const SizedBox(
             height: 5,
@@ -171,24 +197,28 @@ class _BigPoster extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  "Text image",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  tvShow.name,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  "IMDb: 9,4",
-                  style: TextStyle(
+                  "IMDb: ${tvShow.voteAverage}",
+                  style: const TextStyle(
                     fontSize: 12,
                     color: grey,
                   ),
                 ),
               ),
-              const _PosterStars(raiting: 10, centered: true),
+              _PosterStars(rating: double.parse(tvShow.voteAverage.toString()), centered: true),
               MoviesButton(
                 text: "Watch Now",
                 onPressed: onWatchNow,
@@ -204,12 +234,12 @@ class _BigPoster extends StatelessWidget {
 }
 
 class _PosterStars extends StatelessWidget {
-  final double raiting;
+  final double rating;
   final bool centered;
 
   const _PosterStars({
     Key? key,
-    required this.raiting,
+    required this.rating,
     this.centered = false,
   }) : super(key: key);
 
@@ -220,7 +250,7 @@ class _PosterStars extends StatelessWidget {
       child: Row(
         mainAxisAlignment: centered ? MainAxisAlignment.center : MainAxisAlignment.start,
         children: [
-          ...setStarIconByRaiting(raiting)
+          ...setStarIconByRating(rating)
               .map((iconType) => Icon(
                     iconType,
                     size: 15,

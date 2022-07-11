@@ -10,7 +10,7 @@ abstract class AuthState extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Intial and empty state of auth.
+/// Initial and empty state of auth.
 class AuthInitialState extends AuthState {}
 
 /// Loading state of the auth.

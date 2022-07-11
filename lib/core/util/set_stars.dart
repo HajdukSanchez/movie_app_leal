@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 /// Function to create a list for add start into a set
-List<IconData> setStarIconByRaiting(double raiting) {
-  double average = raiting / 2;
-  double module = raiting % 2; // Value to add half star
+List<IconData> setStarIconByRating(double rating) {
+  double average = rating / 2;
+  double module = rating % 2; // Value to add half star
   double maxAverage = 5;
   bool moduleAdd = false; // Flag to add a half star
 

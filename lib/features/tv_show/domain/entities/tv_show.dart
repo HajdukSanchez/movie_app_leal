@@ -5,7 +5,7 @@ class TvShow extends Equatable {
   /// ID of the TV Show.
   final int id;
 
-  /// Average raiting of the TV Show.
+  /// Average rating of the TV Show.
   final num voteAverage;
 
   /// First air date of the TV Show.
