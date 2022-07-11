@@ -32,7 +32,10 @@ class MoviesButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(color: black, fontSize: 16, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            color: black,
+            fontSize: 16,
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_list.dart';
+import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
             MovieList(listTitle: "Popular"),
             MovieList(
               listTitle: "Recommended",
-              fullPoster: true,
+              posterType: MoviePosterSize.normal,
             ),
           ],
         ),

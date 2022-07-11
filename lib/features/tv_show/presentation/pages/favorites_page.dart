@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_leal/core/theme/theme_data.dart';
 
+import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class FavoritesPage extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return const MoviePoster(
-              fullPoster: true,
+              posterType: MoviePosterSize.normal,
             );
           },
           separatorBuilder: (BuildContext context, int index) => const _Separator(),
