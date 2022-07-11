@@ -12,7 +12,7 @@ class UrlPathConverter {
 
   /// Convert url path to a URI.
   ///
-  /// Return a valida URI if we pass an [urlPath] to converted it with query params and base url data.
+  /// Return a valid URI if we pass an [urlPath] to converted it with query params and base url data.
   /// Return a Failure of something wrong parsing the URI.
   Uri convertDataToUriPath(String urlPath) {
     try {
@@ -24,7 +24,7 @@ class UrlPathConverter {
   }
 }
 
-/// Class to handfle failure parsing data to an URI path
+/// Class to handle failure parsing data to an URI path
 class InvalidUriFailure extends Failure {
   @override
   List<Object?> get props => [];

@@ -6,6 +6,7 @@ import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/favorites_page.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/home_page.dart';
+import 'package:movies_app_leal/features/tv_show/presentation/pages/recent_page.dart';
 
 class NavigatorPage extends StatefulWidget {
   const NavigatorPage({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     FavoritesPage(),
-    HomePage(),
+    RecentPage(),
     HomePage(),
   ];
 

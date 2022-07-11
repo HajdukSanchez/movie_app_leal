@@ -33,6 +33,7 @@ class TvShowBloc extends Bloc<TvShowEvent, TvShowState> {
 
     add(const TvShowGetListEvent(type: TvShowListType.popular));
     add(const TvShowGetListEvent(type: TvShowListType.recommended));
+    add(const TvShowGetListEvent(type: TvShowListType.airingToday));
   }
 
   void _onGetListEvent(TvShowGetListEvent event, Emitter<TvShowState> emit) async {
