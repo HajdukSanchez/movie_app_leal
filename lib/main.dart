@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
-import 'package:movies_app_leal/injection_dependecy_container.dart' as di;
+import 'package:movies_app_leal/features/auth/presentation/pages/loading_page.dart';
+import 'package:movies_app_leal/injection_dependency_container.dart' as di;
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -15,16 +16,8 @@ void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // It is important to add this, to ensure not to have problems with Futures initialized the injection container
   await di.init(); // Initialize the dependency injection container
-
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => di.sl<AuthBloc>(),
-        )
-      ],
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 }
 
@@ -33,15 +26,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      routes: routes,
-      theme: ThemeData.dark().copyWith(
-        textTheme: ThemeData.dark().textTheme.apply(
-              fontFamily: 'Gilroy',
-            ),
+    final authBloc = di.sl<AuthBloc>();
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) => authBloc,
+        )
+      ],
+      child: MaterialApp(
+        title: 'TvShow App Leal.co',
+        routes: routes,
+        theme: ThemeData.dark().copyWith(
+          textTheme: ThemeData.dark().textTheme.apply(
+                fontFamily: 'Gilroy',
+              ),
+        ),
+        home: const LoadingPage(),
       ),
-      initialRoute: RoutesPages.loading.name,
     );
   }
 }

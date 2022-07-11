@@ -110,12 +110,12 @@ void main() {
       expectLater(bloc.stream.asBroadcastStream(),
           emitsInOrder(expectedList)); // Expected stream order when we call the bloc event
       // act
-      bloc.add(const AuthLogoutEvent());
+      bloc.add(AuthLogoutEvent());
     });
 
     test('Should get data from the logout usecase', () async {
       // act
-      bloc.add(const AuthLogoutEvent());
+      bloc.add(AuthLogoutEvent());
       await untilCalled(() => mockLogOut(NoParams()));
       // assert
       verify(() => mockLogOut(NoParams()));
@@ -127,7 +127,7 @@ void main() {
       expectLater(bloc.stream.asBroadcastStream(),
           emitsInOrder(expectedList)); // Expected stream order when we call the bloc event
       // act
-      bloc.add(const AuthLogoutEvent());
+      bloc.add(AuthLogoutEvent());
     });
 
     test('Should emit [loading, Error] when getting data fails', () async {
@@ -141,7 +141,7 @@ void main() {
       expectLater(bloc.stream.asBroadcastStream(),
           emitsInOrder(expectedList)); // Expected stream order when we call the bloc event
       // act
-      bloc.add(const AuthLogoutEvent());
+      bloc.add(AuthLogoutEvent());
     });
   });
 }

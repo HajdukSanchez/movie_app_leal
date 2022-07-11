@@ -17,7 +17,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Features - Auth
   //? Bloc
-  sl.registerFactory(() => AuthBloc(login: sl(), logout: sl(), message: sl()));
+  sl.registerLazySingleton(() => AuthBloc(login: sl(), logout: sl(), message: sl()));
 
   //? UseCases
   sl.registerLazySingleton(() => Login(sl()));

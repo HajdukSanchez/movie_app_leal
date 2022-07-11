@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
@@ -55,13 +54,10 @@ class _NavigatorPageState extends State<NavigatorPage> {
   @override
   Widget build(BuildContext context) {
     final title = _widgetPageOptions.elementAt(_selectedIndex)['title'];
-    final authProvider = BlocProvider.of<AuthBloc>(context);
+    final authProvider = BlocProvider.of<AuthBloc>(context, listen: false);
 
     void _onSettings() {
-      authProvider.add(const AuthLogoutEvent());
-      if (authProvider.state is AuthInitialState) {
-        Navigator.pushReplacementNamed(context, RoutesPages.welcome.name);
-      }
+      authProvider.add(AuthLogoutEvent());
     }
 
     return Scaffold(

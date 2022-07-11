@@ -4,7 +4,7 @@ import 'package:movies_app_leal/core/theme/theme_data.dart';
 
 class MoviesActionButton extends StatelessWidget {
   final IconData icon;
-  final Color splasColor;
+  final Color splashColor;
   final Color iconColor;
   final void Function() function;
 
@@ -13,7 +13,7 @@ class MoviesActionButton extends StatelessWidget {
     required this.icon,
     required this.function,
     this.iconColor = white,
-    this.splasColor = Colors.transparent,
+    this.splashColor = Colors.transparent,
   }) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class MoviesActionButton extends StatelessWidget {
         onPressed: function,
         icon: Icon(icon),
         color: iconColor,
-        splashColor: splasColor,
+        splashColor: splashColor,
       ),
     );
   }
