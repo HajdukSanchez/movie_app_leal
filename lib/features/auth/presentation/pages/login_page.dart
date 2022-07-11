@@ -17,6 +17,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final topPadding = MediaQuery.of(context).padding.top;
+    final authProvider = BlocProvider.of<AuthBloc>(context);
 
     return Scaffold(
       body: BackgroundContainer(
@@ -24,9 +25,11 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.only(top: topPadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              MoviesTitle(text: "Welcome!", fontSize: 25, centered: true),
-              _LoginForm()
+            children: [
+              const MoviesTitle(text: "Welcome!", fontSize: 25, centered: true),
+              _LoginForm(
+                authProvider: authProvider,
+              )
             ],
           ),
         ),
@@ -36,22 +39,21 @@ class LoginPage extends StatelessWidget {
 }
 
 class _LoginForm extends StatelessWidget {
+  final AuthBloc authProvider;
+
   const _LoginForm({
     Key? key,
+    required this.authProvider,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = BlocProvider.of<AuthBloc>(context);
     final TextEditingController nameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     void _onLogin() {
       final authData = AuthModel(name: nameController.text, password: passwordController.text);
       authProvider.add(AuthLoginEvent(auth: authData));
-      if (authProvider.state is AuthLoadedState) {
-        Navigator.pushReplacementNamed(context, RoutesPages.home.name);
-      }
     }
 
     void _onClose() {

@@ -17,8 +17,12 @@ void main() async {
   await di.init(); // Initialize the dependency injection container
 
   runApp(
-    BlocProvider(
-      create: (BuildContext context) => di.sl<AuthBloc>(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => di.sl<AuthBloc>(),
+        )
+      ],
       child: const MyApp(),
     ),
   );
