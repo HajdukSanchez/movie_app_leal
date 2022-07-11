@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/core/theme/theme_data.dart';
@@ -6,6 +7,8 @@ import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_text_field.dart';
 import 'package:movies_app_leal/core/widgets/movies_title.dart';
+import 'package:movies_app_leal/features/auth/data/models/auth_model.dart';
+import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
 import 'package:movies_app_leal/features/auth/presentation/widgets/backgroud_container.dart';
 
 class LoginPage extends StatelessWidget {
@@ -39,11 +42,16 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = BlocProvider.of<AuthBloc>(context);
     final TextEditingController nameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     void _onLogin() {
-      // TODO: implement _onLogin
+      final authData = AuthModel(name: nameController.text, password: passwordController.text);
+      authProvider.add(AuthLoginEvent(auth: authData));
+      if (authProvider.state is AuthLoadedState) {
+        Navigator.pushReplacementNamed(context, RoutesPages.home.name);
+      }
     }
 
     void _onClose() {

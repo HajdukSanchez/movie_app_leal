@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:movies_app_leal/features/auth/presentation/pages/loading_page.dart';
 import 'package:movies_app_leal/features/auth/presentation/pages/login_page.dart';
 import 'package:movies_app_leal/features/auth/presentation/pages/welcome_page.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/favorites_page.dart';
@@ -8,7 +9,9 @@ import 'package:movies_app_leal/features/tv_show/presentation/pages/poster_detai
 
 /// Enum with applicatioon pages names to navigate to.
 enum RoutesPages {
-  /// Welcome home page.
+  // Loading page (page to handle auth state).
+  loading,
+  // Welcome home page.
   welcome,
   // Login page
   login,
@@ -22,6 +25,7 @@ enum RoutesPages {
 
 /// Map with routes names associated to pages.
 Map<String, Widget Function(BuildContext)> routes = {
+  RoutesPages.loading.name: (_) => const LoadingPage(),
   RoutesPages.welcome.name: (_) => const WelcomePage(),
   RoutesPages.login.name: (_) => const LoginPage(),
   RoutesPages.home.name: (_) => const NavigatorPage(),

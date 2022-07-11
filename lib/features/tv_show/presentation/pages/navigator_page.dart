@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
+import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/favorites_page.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/pages/home_page.dart';
 
@@ -49,13 +52,17 @@ class _NavigatorPageState extends State<NavigatorPage> {
     });
   }
 
-  void _onSettings() {
-    // TODO: Add logout
-  }
-
   @override
   Widget build(BuildContext context) {
     final title = _widgetPageOptions.elementAt(_selectedIndex)['title'];
+    final authProvider = BlocProvider.of<AuthBloc>(context);
+
+    void _onSettings() {
+      authProvider.add(const AuthLogoutEvent());
+      if (authProvider.state is AuthInitialState) {
+        Navigator.pushReplacementNamed(context, RoutesPages.welcome.name);
+      }
+    }
 
     return Scaffold(
       backgroundColor: black,

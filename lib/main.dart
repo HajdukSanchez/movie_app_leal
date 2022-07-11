@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/routes/routes.dart';
+import 'package:movies_app_leal/features/auth/presentation/bloc/blocs.dart';
 import 'package:movies_app_leal/injection_dependecy_container.dart' as di;
 
 void main() async {
@@ -14,7 +16,12 @@ void main() async {
       .ensureInitialized(); // It is important to add this, to ensure not to have problems with Futures initialized the injection container
   await di.init(); // Initialize the dependency injection container
 
-  runApp(const MyApp());
+  runApp(
+    BlocProvider(
+      create: (BuildContext context) => di.sl<AuthBloc>(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +37,7 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Gilroy',
             ),
       ),
-      initialRoute: RoutesPages.home.name, // TODO: Chnage initial route name
+      initialRoute: RoutesPages.loading.name,
     );
   }
 }
