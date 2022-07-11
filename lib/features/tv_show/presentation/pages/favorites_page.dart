@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
+import 'package:movies_app_leal/features/tv_show/presentation/bloc/tv_show/tv_show_bloc.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -10,19 +12,24 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return Container();
-            // return MoviePoster(
-            //   posterType: MoviePosterSize.normal,
-            //   tvShow: ,
-            // );
-          },
-          separatorBuilder: (BuildContext context, int index) => const _Separator(),
-        ),
+      child: BlocBuilder<TvShowBloc, TvShowState>(
+        builder: (context, state) {
+          final list = state.lists?[TvShowListType.recommended] ?? [];
+
+          return SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: ListView.separated(
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return MoviePoster(
+                  posterType: MoviePosterSize.normal,
+                  tvShow: list[index],
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) => const _Separator(),
+            ),
+          );
+        },
       ),
     );
   }
