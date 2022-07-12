@@ -41,8 +41,4 @@ void main() {
       message: mockMessage,
     );
   });
-
-  group("TvShowGetListEvent", () {});
-
-  group("TvShowGetDetailEvent", () {});
 }

@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => tvShowBloc),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'TvShow App Leal.co',
         routes: routes,
         theme: ThemeData.dark().copyWith(
