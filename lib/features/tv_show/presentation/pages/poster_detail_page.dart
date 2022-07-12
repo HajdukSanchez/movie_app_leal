@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
+import 'package:movies_app_leal/core/widgets/information_container.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/bloc/tv_show/tv_show_bloc.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
 
@@ -25,6 +26,13 @@ class PosterDetailPage extends StatelessWidget {
       ),
       body: BlocBuilder<TvShowBloc, TvShowState>(builder: (context, state) {
         final list = state.lists?[TvShowListType.popular] ?? [];
+
+        if (list.isEmpty) {
+          return const InformationContainer(
+            icon: Icons.bar_chart_rounded,
+            message: 'Error showing data',
+          );
+        }
 
         return Center(
           child: SingleChildScrollView(
