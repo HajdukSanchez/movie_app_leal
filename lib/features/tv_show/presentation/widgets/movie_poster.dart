@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:movies_app_leal/core/routes/routes.dart';
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/util/modify_text_length.dart';
 import 'package:movies_app_leal/core/util/set_stars.dart';
@@ -28,7 +29,7 @@ class MoviePoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _onWatchNow() {
-      // TODO: implement _onWatchNow
+      Navigator.pushNamed(context, RoutesPages.details.name);
     }
 
     switch (posterType) {

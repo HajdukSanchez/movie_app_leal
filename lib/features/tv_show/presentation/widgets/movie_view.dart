@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app_leal/core/routes/routes.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
 import 'package:movies_app_leal/core/util/image_path_generator.dart';
@@ -14,7 +15,7 @@ class MovieView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _onGoToView() {
-      // TODO: implement go to view
+      Navigator.pushNamed(context, RoutesPages.recentDetail.name);
     }
 
     return SizedBox(

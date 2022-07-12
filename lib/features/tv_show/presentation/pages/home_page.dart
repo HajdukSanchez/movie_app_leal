@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app_leal/core/widgets/information_container.dart';
 
+import 'package:movies_app_leal/core/widgets/information_container.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/bloc/tv_show/tv_show_bloc.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_list.dart';
 import 'package:movies_app_leal/features/tv_show/presentation/widgets/movie_poster.dart';
