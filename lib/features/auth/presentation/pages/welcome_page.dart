@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:movies_app_leal/core/theme/theme_data.dart';
+import 'package:movies_app_leal/core/util/dialog_messages.dart';
 import 'package:movies_app_leal/core/widgets/movies_action_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_button.dart';
 import 'package:movies_app_leal/core/widgets/movies_text_field.dart';
@@ -123,8 +124,17 @@ class _LoginForm extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     void _onLogin() {
-      final authData = AuthModel(name: nameController.text, password: passwordController.text);
-      BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(auth: authData));
+      if (nameController.text.isEmpty || passwordController.text.isEmpty) {
+        showDialogMessage(
+          context,
+          "Alert",
+          message: "Please fill all fields",
+          icon: Icons.edit_rounded,
+        );
+      } else {
+        final authData = AuthModel(name: nameController.text, password: passwordController.text);
+        BlocProvider.of<AuthBloc>(context).add(AuthLoginEvent(auth: authData));
+      }
     }
 
     return SingleChildScrollView(
